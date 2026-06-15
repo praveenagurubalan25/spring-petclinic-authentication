@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>PetClinic Registration</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6f9;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:10px;
+      width:350px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    input{
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+
+    button{
+      width:100%;
+      padding:10px;
+      background:#28a745;
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#218838;
+    }
+
+    .login-link{
+      text-align:center;
+      margin-top:15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <h2>User Registration</h2>
+
+  <form th:action="@{/register}" method="post">
+
+    <label>Username</label>
+    <input
+      type="text"
+      name="username"
+      required>
+
+    <label>Email</label>
+    <input
+      type="email"
+      name="email"
+      required>
+
+    <label>Password</label>
+    <input
+      type="password"
+      name="password"
+      required>
+
+    <button type="submit">
+      Register
+    </button>
+
+  </form>
+
+  <div class="login-link">
+    Already have an account?
+    <a th:href="@{/login}">
+      Login
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

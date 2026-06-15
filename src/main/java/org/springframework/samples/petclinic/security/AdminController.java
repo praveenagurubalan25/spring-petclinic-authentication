@@ -1,0 +1,26 @@
+package org.springframework.samples.petclinic.security;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+
+	@GetMapping("/dashboard")
+	public String dashboard() {
+		return "admin/dashboard";
+	}
+
+	@GetMapping("/create-owner")
+	public String createOwner() {
+		return "admin/create-owner";
+	}
+
+	@GetMapping("/manage-users")
+	public String manageUsers() {
+		return "admin/manage-users";
+	}
+
+}
