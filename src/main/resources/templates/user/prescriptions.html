@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+  <title>My Prescriptions</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <style>
+
+    body{
+      background-color:#f5f5f5;
+    }
+
+    .header{
+      background:#34302d;
+      color:white;
+      padding:25px;
+      margin-bottom:30px;
+    }
+
+    .card{
+      border:none;
+      border-radius:12px;
+    }
+
+    .table th{
+      background:#34302d;
+      color:white;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    .table td{
+      vertical-align:middle;
+    }
+
+    .page-title{
+      font-weight:bold;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+  <div class="container">
+
+    <h2 class="page-title">
+      My Pet Prescriptions
+    </h2>
+
+    <p>
+      View all prescriptions provided by veterinarians.
+    </p>
+
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="card shadow">
+
+    <div class="card-body">
+
+      <div class="d-flex justify-content-between mb-3">
+
+        <h3>Prescription History</h3>
+
+        <a th:href="@{/user/dashboard}"
+           class="btn btn-secondary">
+          Back
+        </a>
+
+      </div>
+
+      <div th:if="${#lists.isEmpty(prescriptions)}"
+           class="alert alert-warning">
+
+        No prescriptions found.
+
+      </div>
+
+      <div th:unless="${#lists.isEmpty(prescriptions)}">
+
+        <table class="table table-bordered table-hover">
+
+          <thead>
+
+          <tr>
+
+            <th>Pet Name</th>
+
+            <th>Visit Date</th>
+
+            <th>Reason</th>
+
+            <th>Diagnosis</th>
+
+            <th>Medicines</th>
+
+            <th>Instructions</th>
+
+            <th>Veterinarian</th>
+
+          </tr>
+
+          </thead>
+
+          <tbody>
+
+          <tr th:each="p : ${prescriptions}">
+
+            <td th:text="${p.petName}"></td>
+
+            <td th:text="${p.visitDate}"></td>
+
+            <td th:text="${p.reasonForVisit}"></td>
+
+            <td th:text="${p.diagnosis}"></td>
+
+            <td th:text="${p.medicines}"></td>
+
+            <td th:text="${p.instructions}"></td>
+
+            <td th:text="${p.vetProfile != null ? p.vetProfile.fullName : 'N/A'}"></td>
+
+            <td>
+
+              <a th:href="@{/prescriptions/pdf/{id}(id=${p.id})}"
+                 class="btn btn-success btn-sm">
+
+                Download PDF
+
+              </a>
+
+            </td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</html>

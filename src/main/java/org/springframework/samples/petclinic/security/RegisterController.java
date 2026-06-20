@@ -26,11 +26,12 @@ public class RegisterController {
 	@PostMapping("/register")
 	public String registerUser(@ModelAttribute User user) {
 
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(
+			passwordEncoder.encode(user.getPassword()));
 
 		user.setEnabled(true);
 
-		user.getRoles().add("ROLE_USER");
+		user.getRoles().add("ROLE_OWNER");
 
 		userRepository.save(user);
 

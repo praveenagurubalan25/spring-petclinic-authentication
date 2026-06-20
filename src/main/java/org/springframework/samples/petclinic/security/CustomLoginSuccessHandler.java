@@ -12,24 +12,35 @@ import java.io.IOException;
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException {
+	public void onAuthenticationSuccess(HttpServletRequest request,
+	                                    HttpServletResponse response,
+	                                    Authentication authentication)
+		throws IOException {
 
-		String role = authentication.getAuthorities().iterator().next().getAuthority();
+		String role = authentication.getAuthorities()
+			.iterator()
+			.next()
+			.getAuthority();
 
-		System.out.println("LOGIN ROLE: " + role); // debug
+		System.out.println("LOGIN ROLE : " + role);
 
 		if (role.equals("ROLE_ADMIN")) {
+
 			response.sendRedirect("/admin/dashboard");
 			return;
 		}
 
-		if (role.equals("ROLE_USER")) {
+		if (role.equals("ROLE_VET")) {
+
+			response.sendRedirect("/prescriptions/create");
+			return;
+		}
+
+		if (role.equals("ROLE_OWNER")) {
 			response.sendRedirect("/user/dashboard");
 			return;
 		}
 
 		response.sendRedirect("/welcome");
 	}
-
 }

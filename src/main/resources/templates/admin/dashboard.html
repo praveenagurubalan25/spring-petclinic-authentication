@@ -81,7 +81,7 @@
 
   <div class="row g-4">
 
-    <!-- Create Owner -->
+    <!-- Create User -->
 
     <div class="col-md-4">
 
@@ -89,14 +89,15 @@
 
         <div class="card-body text-center">
 
-          <h3>Create Owner</h3>
+          <h3>Create User</h3>
 
-          <p>Add new pet owners into PetClinic.</p>
+          <p>Create login accounts for Owners, Veterinarians and Admins.</p>
 
-          <a href="/owners/new"
+          <a th:href="@{/admin/create-user}"
              class="btn btn-success">
             Open
           </a>
+
 
         </div>
 
@@ -165,6 +166,29 @@
           <a href="/admin/manage-users"
              class="btn btn-danger">
             Open
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- View Prescriptions -->
+
+    <div class="col-md-4">
+
+      <div class="card shadow">
+
+        <div class="card-body text-center">
+
+          <h3>Prescriptions</h3>
+
+          <p>View all prescriptions created by veterinarians.</p>
+
+          <a href="/admin/prescriptions"
+             class="btn btn-info">
+            View
           </a>
 
         </div>

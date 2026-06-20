@@ -32,16 +32,25 @@ public class SecurityConfig {
 				.hasRole("ADMIN")
 
 				.requestMatchers("/owners/**")
-				.hasAnyRole("ADMIN", "USER")
+				.hasAnyRole("ADMIN", "OWNER")
 
 				.requestMatchers("/vets/**")
-				.hasAnyRole("ADMIN", "USER")
+				.hasAnyRole("ADMIN", "OWNER")
+
+				.requestMatchers("/prescriptions/create")
+				.hasRole("VET")
+
+				.requestMatchers("/prescriptions/**")
+				.hasAnyRole("ADMIN","VET","OWNER")
 
 				.requestMatchers("/change-password")
-				.hasAnyRole("ADMIN", "USER")
+				.hasAnyRole("ADMIN", "OWNER","VET")
 
 				.requestMatchers("/change-password/**")
-				.hasAnyRole("ADMIN", "USER")
+				.hasAnyRole("ADMIN", "OWNER","VET")
+
+				.requestMatchers("/user/**")
+				.hasAnyRole("OWNER","USER")
 
 				.requestMatchers("/welcome")
 				.authenticated()
